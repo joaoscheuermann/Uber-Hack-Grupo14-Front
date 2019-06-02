@@ -13,9 +13,9 @@
     <div><b>timestamp:</b> {{ lastPosition.timestamp }}</div>
     <br>
     
-    <div><b>deltaTime:</b> {{ deltaTime }}</div>
+    <div><b>time:</b> {{ deltaTime }}</div>
     <div><b>distance</b> {{ distance }}</div>
-    <div><b>timestamp:</b> {{ lastPosition.timestamp }}</div>
+    <div><b>speed:</b> {{ speed }}</div>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
   methods: {
     startGeolocationWatch () {
       const GEOLOCATION_OPTIONS = {enableHighAccuracy: true}
-
+  
       this.geolocationWatcherID = navigator.geolocation.watchPosition(this.watchPositionSucces, this.watchPositionError, GEOLOCATION_OPTIONS)
     },
 
@@ -62,8 +62,7 @@ export default {
         var a = 
           Math.sin(dLat/2) * Math.sin(dLat/2) +
           Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-          Math.sin(dLon/2) * Math.sin(dLon/2)
-          ; 
+          Math.sin(dLon/2) * Math.sin(dLon/2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
         var d = R * c; // Distance in km
         return d;
@@ -78,6 +77,7 @@ export default {
       
       this.deltaTime = deltaTime
       this.distance = distanceBetweenPoints
+      this.speed = (distanceBetweenPoints / deltaTime) * 3.6
     },
 
     watchPositionSucces (data) {
