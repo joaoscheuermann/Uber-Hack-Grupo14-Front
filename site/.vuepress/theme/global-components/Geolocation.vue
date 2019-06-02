@@ -141,6 +141,8 @@ export default {
   >.current-speed {
     @include typography-base('Poppins', unset, 600);
     color: #ffffff;
+    width: 100%;
+    text-align: center;
 
     >.speed {
       position: relative;
@@ -155,9 +157,9 @@ export default {
 
 .max-speed {
   position: absolute;
-  padding: 22 px;
+  padding: 24px 26px;
   top: calc(-100% + 60px);
-  right: calc(-100% + 60px);
+  right: calc(50% - 150px);
   font-size: 24px;
   border: 5px solid white;
   border-radius: 50px;
