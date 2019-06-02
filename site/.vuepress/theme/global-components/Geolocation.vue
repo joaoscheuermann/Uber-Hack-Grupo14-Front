@@ -12,7 +12,7 @@
       <div class="current-speed">
         <div class="speed">
           <div class="max-speed"> 40 </div>
-          {{ !speed ? 0 : speed }}
+          {{ Math.min(Math.max(parseInt(Math.trunc(speed)), 0), 50) }}
         </div>
         <div class="unit">KM/h</div>
       </div>
