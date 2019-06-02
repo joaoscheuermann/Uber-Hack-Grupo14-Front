@@ -5,7 +5,7 @@ Esse repositorio respresenta a implementação da funcionalidade principal do Co
 
 O programa leva em consideração a ultima posição do usuário e compara com base na atual para calcular uma velocidade média. Há como remover a "interferencia" (os saltos aleatórios ou ruido) do GPS através do  _Kalman filter_.
 
-Exemplo online: `[https://condu.herokuapp.com/](https://condu.herokuapp.com/)`
+Exemplo online: [https://condu.herokuapp.com/](https://condu.herokuapp.com/)
 
 ## Instalação
 `yarn install`
