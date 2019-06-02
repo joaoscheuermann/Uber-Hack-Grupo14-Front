@@ -5,7 +5,7 @@
     <div><b>long:</b> {{ position.lng }}</div>
     <div><b>timestamp:</b> {{ timestamp }}</div>
 
-    <div v-if="geolocationPermitionState === 'denied'" class="btn" @click="handleGeolocationPermission"> enable geo location </div>
+    <div v-if="geolocationPermitionState !== 'granted'" class="btn" @click="handleGeolocationPermission"> enable geo location </div>
   </div>
 </template>
 
@@ -25,26 +25,26 @@ export default {
 
   methods: {
     handleGeolocationPermission () {
-      navigator.permissions.query({name:'geolocation'})
-      .then((result) => {
-        this.geolocationPermitionState = result.state
+      // navigator.permissions.query({name:'geolocation'})
+      // .then((result) => {
+      //   this.geolocationPermitionState = result.state
 
-        if (result.state == 'granted') {
-          report(result.state);
-          this.startGeolocationWatch();
-        } else if (result.state == 'prompt') {
-          report(result.state);
-        } else if (result.state == 'denied') {
-          report(result.state);
-        }
-        result.onchange = function() {
-          report(result.state);
-        }
-      });
+      //   if (result.state == 'granted') {
+      //     report(result.state);
+      //   } else if (result.state == 'prompt') {
+      //     report(result.state);
+      //   } else if (result.state == 'denied') {
+      //     report(result.state);
+      //   }
+      //   result.onchange = function() {
+      //     report(result.state);
+      //   }
+      // });
 
-      function report(state) {
-        alert('Permission ' + state);
-      }
+      // function report(state) {
+      //   alert('Permission ' + state);
+      // }
+      this.startGeolocationWatch()
     },
 
     startGeolocationWatch () {
