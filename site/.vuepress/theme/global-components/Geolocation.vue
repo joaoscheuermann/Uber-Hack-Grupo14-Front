@@ -1,21 +1,22 @@
 <template>
   <div class="login">
-    <h1>Condu</h1>
+    <div class="header"> 
+      <img class="logo" src="/images/logo.svg" alt="">
+    </div>
 
-    <h3>Current</h3>
-    <div><b>lat:</b> {{ currentPosition.lat }}</div>
-    <div><b>long:</b> {{ currentPosition.lng }}</div>
-    <div><b>timestamp:</b> {{ currentPosition.timestamp }}</div>
-    <br>
-    <h3>Last</h3>
-    <div><b>lat:</b> {{ lastPosition.lat }}</div>
-    <div><b>long:</b> {{ lastPosition.lng }}</div>
-    <div><b>timestamp:</b> {{ lastPosition.timestamp }}</div>
-    <br>
-    
-    <div><b>time:</b> {{ deltaTime }}</div>
-    <div><b>distance</b> {{ distance }}</div>
-    <div><b>speed:</b> {{ speed }}</div>
+    <div class="road">
+      Av. Escola Politécnica
+    </div>
+
+    <div class="speedometer">
+      <div class="current-speed">
+        <div class="speed">
+          <div class="max-speed"> 40 </div>
+          {{ !speed ? 0 : speed }}
+        </div>
+        <div class="unit">KM/h</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -105,9 +106,60 @@ export default {
 </script>
 
 <style lang="scss">
-.btn {
-  padding: 20px;
-  margin: 30px 0 0 0;
-  border: 1px solid black;
+@import "../styles/modules/typography.module";
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding: 14px;
+  background: #F3F3F3;
+  text-align: center;
+
+  >.logo {
+    width: 98px;
+    height: 38px;
+  }
+}
+
+.road {
+  padding: 17px 24px 15px;
+  background-color: #091D3B;
+  color: #F3F3F3;
+  @include typography-base('Poppins', 16px, 500)
+}
+
+.speedometer {
+  flex-grow: 1;
+  display: flex;
+  background-color: #0B2449;
+
+  justify-content: center;
+  align-items: center;
+
+  >.current-speed {
+    @include typography-base('Poppins', unset, 600);
+    color: #ffffff;
+
+    >.speed {
+      position: relative;
+      font-size: 84px;
+    }
+
+    >.unit {
+      font-size: 36px;
+    }
+  }
+}
+
+.max-speed {
+  position: absolute;
+  padding: 22px;
+  top: calc(-100% + 60px);
+  right: calc(-100% + 60px);
+  font-size: 24px;
+  border: 5px solid white;
+  border-radius: 50px;
 }
 </style>

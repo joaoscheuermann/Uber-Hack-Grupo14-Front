@@ -15,6 +15,14 @@ export default {
   @import "../styles/modules/grid.module";
   @import "../styles/modules/typography.module";
 
+  html,
+  body,
+  #app,
+  .content.default,
+  .login {
+    height: 100%;
+  }
+
   #app {
     > .global-ui {
       display: none;
@@ -30,11 +38,7 @@ export default {
   }
 
   .content.default {
-    @include grid;
-
-    >* {
-      @include column(5, 8);
-    }
+    // @include grid;
 
     h1 {
       margin-bottom: 15px;
