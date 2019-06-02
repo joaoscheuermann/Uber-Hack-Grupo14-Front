@@ -52,13 +52,23 @@ export default {
   
   mounted () {
     navigator.permissions.query({name:'geolocation'})
-      .then((permissionStatus) => {
-        if (permissionStatus.state === "granted") this.startGeolocationWatch()
-
-        permissionStatus.onchange = function() {
-          if (this.state === "granted") this.startGeolocationWatch()
-        };
+      .then((result) => {
+        if (result.state == 'granted') {
+          report(result.state);
+        } else if (result.state == 'prompt') {
+          report(result.state);
+          this.startGeolocationWatch()
+        } else if (result.state == 'denied') {
+          report(result.state);
+        }
+        result.onchange = function() {
+          report(result.state);
+        }
       });
+
+    function report(state) {
+      alert('Permission ' + state);
+    }
   }
 }
 
