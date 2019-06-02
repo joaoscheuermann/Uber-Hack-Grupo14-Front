@@ -7,8 +7,10 @@ description: ''
 
 <template>
   <div class="login">
-    <div>{{ position }}</div>
-    <div>{{ timestamp }}</div>
+    <h1>Condu</h1>
+    <div><b>lat:</b> {{ position.lat }}</div>
+    <div><b>long:</b> {{ position.lng }}</div>
+    <div><b>timestamp:</b> {{ timestamp }}</div>
     <div>{{ dump }}</div>
   </div>
 </template>
@@ -18,7 +20,10 @@ export default {
   data () {
     return {
       geolocationWatcherID: null,
-      position: null,
+      position: {
+        lat: null,
+        lng: null
+      },
       timestamp: null,
       dump: null,
     }
@@ -27,11 +32,17 @@ export default {
   methods: {
     startGeolocationWatch () {
       const GEOLOCATION_OPTIONS = {enableHighAccuracy: true}
+
       this.geolocationWatcherID = navigator.geolocation.watchPosition(this.watchPositionSucces, this.watchPositionError, GEOLOCATION_OPTIONS)
     },
 
-    watchPositionSucces ({ coords, timestamp }) {
-      this.position = JSON.stringify(coords)
+    watchPositionSucces (data) {
+      const { coords, timestamp } = data
+      const { latitude, longitude } = coords
+
+      this.position.lat = latitude
+      this.position.lng = longitude
+      this.timestamp = timestamp
     },
 
     watchPositionError (error) {
