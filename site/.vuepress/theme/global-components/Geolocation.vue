@@ -155,7 +155,7 @@ export default {
 
 .max-speed {
   position: absolute;
-  padding: 22px;
+  padding: 22 px;
   top: calc(-100% + 60px);
   right: calc(-100% + 60px);
   font-size: 24px;
