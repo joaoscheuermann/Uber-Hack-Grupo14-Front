@@ -51,7 +51,14 @@ export default {
   },
   
   mounted () {
-    this.startGeolocationWatch()
+    navigator.permissions.query({name:'geolocation'})
+      .then((permissionStatus) => {
+        if (permissionStatus.state === "granted") this.startGeolocationWatch()
+
+        permissionStatus.onchange = function() {
+          if (this.state === "granted") this.startGeolocationWatch()
+        };
+      });
   }
 }
 
