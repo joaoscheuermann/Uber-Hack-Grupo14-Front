@@ -74,7 +74,7 @@ export default {
       
       this.deltaTime = deltaTime
       this.distance = distanceBetweenPoints
-      this.speed = (distanceBetweenPoints / deltaTime) * 3.6
+      this.speed = ((distanceBetweenPoints / deltaTime) * 3.6).toFixed(1)
     },
 
     watchPositionSucces (data) {
